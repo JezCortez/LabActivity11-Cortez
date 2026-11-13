@@ -30,7 +30,7 @@ class PostSeeder extends Seeder
             'is_published' => true,
             'is_pinned' => true,
             // TODO: change to YOUR birthday in 2026
-            'published_at' => '2026-01-01 08:00:00',
+            'published_at' => '2026-05-31 08:00:00',
         ]);
     }
 }
