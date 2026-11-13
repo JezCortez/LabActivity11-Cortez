@@ -8,12 +8,30 @@
 </head>
 <body class="min-h-screen flex flex-col bg-neutral-50 text-neutral-800 antialiased">
     <header class="border-b bg-white">
-        <div class="mx-auto max-w-4xl px-4 py-3">
+        <div class="mx-auto flex max-w-4xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
             <a href="{{ route('posts.index') }}" class="font-semibold tracking-tight">Barangay Bulletin – Purok Cortez</a>
+            <div class="flex items-center gap-4 text-sm text-neutral-600">
+                @auth
+                    <span>Hi, {{ auth()->user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button class="underline hover:text-neutral-900">Logout</button>
+                    </form>
+                @endauth
+                @guest
+                    <a href="{{ route('login') }}" class="hover:text-neutral-900">Sign in</a>
+                @endguest
+            </div>
         </div>
     </header>
 
     <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
+        @if (session('status'))
+            <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                {{ session('status') }}
+            </div>
+        @endif
+
         @yield('content')
     </main>
 
