@@ -12,6 +12,9 @@
             <a href="{{ route('posts.index') }}" class="font-semibold tracking-tight">Barangay Bulletin – Purok Cortez</a>
             <div class="flex items-center gap-4 text-sm text-neutral-600">
                 @auth
+                    @if (auth()->user()->author)
+                        <a href="{{ route('posts.create') }}" class="hover:text-neutral-900">New post</a>
+                    @endif
                     <span>Hi, {{ auth()->user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
